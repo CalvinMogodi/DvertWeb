@@ -30,7 +30,7 @@
                                     <td>{{advert.dateStart | date}}</td>
                                     <td>{{advert.dateEnd | date}}</td>
                                      <td class="td-actions text-right">
-                                        <button type="button" (click)="approveRejectAdvert(advert, i)"  rel="tooltip" title="View Details" class="btn btn-primary btn-simple btn-xs">
+                                        <button type="button" (click)="approveRejectAdvert(advert, false)"  rel="tooltip" title="View Details" class="btn btn-primary btn-simple btn-xs">
                                             <i class="material-icons">visibility</i>
                                         </button>                                                  
                                     </td>
@@ -60,8 +60,8 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let advert of adverts; let i = index">
-                                <tr>
+                            <tbody *ngFor="let advert of adverts; let i = index"> 
+                                <tr (click)="approveRejectAdvert(advert, true)">
                                     <td>{{advert.advertName}}</td>
                                     <td>{{advert.userDisplayName}}</td>
                                     <td>{{advert.category}}</td>
@@ -166,8 +166,9 @@
                                  <textarea class="input-clare" style="width: 100%;" id="selectAdvertDiscription"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-danger pull-left" (click)="rejectAdvert()">Reject</button>
-                        <button type="submit" class="btn btn-success pull-right" (click)="approveAdvert()">Approve</button>
+                        <button type="submit" id="deleteBtn" class="btn btn-danger pull-left" (click)="deleteAdvert()">Delete</button>
+                        <button type="submit" id="rejectBtn" class="btn btn-warning pull-left" (click)="rejectAdvert()">Reject</button>
+                        <button type="submit" id="approveBtn" class="btn btn-success pull-right" (click)="approveAdvert()">Approve</button>
                         <div class="clearfix"></div>
                     </form>
               

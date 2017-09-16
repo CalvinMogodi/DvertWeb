@@ -12,15 +12,20 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class AppComponent implements OnInit {
    @ViewChild('loginForm') loginForm;
   isAuthenticated: boolean = false ; 
+  goToPrivacyPoliciesAndTermsConditions: boolean = false ; 
    users: FirebaseListObservable<any[]>;
     signInAttempt: boolean = false;
   constructor(public location: Location, public db: AngularFireDatabase, router : Router) {
     router.events.subscribe((url:any) => {     
-        if(url.url == '/home' || url.url == '/'){
+        if(url.url == '/home' || url.url == '/' ){
           this.isAuthenticated = false ;
+          this.goToPrivacyPoliciesAndTermsConditions = false ;
+        }else if(url.url == '/privacyPoliciesAndTermsConditions'){
+          this.goToPrivacyPoliciesAndTermsConditions = true;
         }
         else{
            this.isAuthenticated = true ;
+           this.goToPrivacyPoliciesAndTermsConditions = false ;
         }
     });
   }

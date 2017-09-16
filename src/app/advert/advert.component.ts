@@ -1,9 +1,9 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirebaseListObservable, FirebaseObjectObservable  } from 'angularfire2/database';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MdDialog } from '@angular/material';
-import { ApproveRejectComponent } from './approveReject/approveReject.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 declare var jQuery:any;
 declare var $: any;
@@ -24,8 +24,9 @@ export class AdvertComponent {
    
   public advertsToUpdata: FirebaseListObservable<any>;
 
-    constructor(public db: AngularFireDatabase, public dialog: MdDialog){
+    constructor(public db: AngularFireDatabase, public dialog: MdDialog,public toastr: ToastsManager, vcr: ViewContainerRef){
         this.advertsToUpdata = db.list('/advert'); 
+        this.toastr.setRootViewContainerRef(vcr);
      db.list('/advert').subscribe(data => {
          var adverts = [];
          var awaitApprovelADs = [];
@@ -54,11 +55,11 @@ export class AdvertComponent {
     
     }
 
-    approveRejectAdvert(selectAdvert, index){
+    approveRejectAdvert(selectAdvert, isView){
         this.awaitApprovelADs;
         this.advertId = selectAdvert.$key;
-        var startDate = (selectAdvert.dateStart).toDateString()
-         var endDate = (selectAdvert.dateEnd).toDateString()
+        var startDate = new Date(selectAdvert.dateStart).toDateString()
+         var endDate = new Date(selectAdvert.dateEnd).toDateString()
         jQuery("#approveRejectAdModal").modal("show");
        this.selectAdvert = selectAdvert;
        if(selectAdvert.postAsaBusiness){
@@ -70,6 +71,19 @@ export class AdvertComponent {
             jQuery("#businessNameDiv").hide();
             jQuery("#businessWebsiteDiv").hide();
        }
+       if(new Date(selectAdvert.dateEnd) < new Date() || selectAdvert.isRejected)
+            jQuery("#deleteBtn").show();
+       else
+            jQuery("#deleteBtn").hide();
+        
+        if(isView){
+            jQuery("#rejectBtn").hide();
+            jQuery("#approveBtn").hide();
+        }else{
+            jQuery("#rejectBtn").show();
+            jQuery("#approveBtn").show();
+        }
+
        jQuery("#selectAdvertDdvertName").val(selectAdvert.advertName);
        jQuery("#selectAdvertCustomerDisplayName").val(selectAdvert.userDisplayName);
        jQuery("#selectAdvertCategory").val(selectAdvert.category);
@@ -123,40 +137,30 @@ export class AdvertComponent {
     approveAdvert(selectAdvert){
         if(this.advertId){             
            this.advertsToUpdata.update(this.advertId, {isApproved: true});
-           // this.showNotification("Advert has been approved successfully.", 'success')
-         
             this.advertId = undefined;
             this.selectAdvert = undefined;
             jQuery("#approveRejectAdModal").modal("hide");
-           
+           this.toastr.success('Advert is approved successfully!', 'Success!');
         }
     }
-
-    showNotification(message, color){
-      //const type = ['','info','success','warning','danger'];
-
-
-      $.notify({
-          message: message
-
-      },{
-          type: color,
-          timer: 4000,
-          placement: {
-              from: 'top',
-              align: 'right'
-          }
-      });
-  }
 
     rejectAdvert(selectAdvert){
         if(this.advertId){
             this.advertsToUpdata.update(this.advertId, {isRejected: true, isApproved: null});
-           // this.showNotification("Advert has been rejected successfully.", 'success')
             this.selectAdvert = undefined;
             this.advertId = undefined;
             jQuery("#approveRejectAdModal").modal("hide");
-             
+            this.toastr.warning('Advert is rejected successfully!', 'Success!');
+        }
+    }
+
+    deleteAdvert(){
+        if(this.advertId){
+            this.db.list('/advert/'+ this.advertId).remove();
+            this.selectAdvert = undefined;
+            this.advertId = undefined;
+            jQuery("#approveRejectAdModal").modal("hide");
+            this.toastr.warning('Advert is deleted successfully!', 'Success!');
         }
     }
 }

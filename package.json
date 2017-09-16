@@ -28,6 +28,7 @@
     "angularfire2": "^4.0.0-rc.2-next.1",
     "core-js": "^2.4.1",
     "firebase": "^4.3.1",
+    "ng2-toastr": "^4.1.2",
     "promise-polyfill": "^6.0.2",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",

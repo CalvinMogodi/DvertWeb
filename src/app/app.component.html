@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="isAuthenticated">
+<div class="wrapper" *ngIf="isAuthenticated && !goToPrivacyPoliciesAndTermsConditions">
     <div class="sidebar" data-color='red' data-image="">
         <app-sidebar></app-sidebar>
         <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-4.jpg)"></div>
@@ -8,7 +8,10 @@
         <router-outlet></router-outlet>        
     </div>
 </div>
-<div class="wrapper" *ngIf="!isAuthenticated">
+<div class="wrapper" *ngIf="!isAuthenticated && !goToPrivacyPoliciesAndTermsConditions">
 	<app-home></app-home>
+</div>
+<div class="wrapper" *ngIf="goToPrivacyPoliciesAndTermsConditions">
+	<app-privacyPoliciesAndTermsConditions></app-privacyPoliciesAndTermsConditions>
 </div>
 

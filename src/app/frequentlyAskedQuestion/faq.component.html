@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">Frequently Asked Questions</h4>                
+            </div>
+            <div class="card-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-content">
+                        <form [formGroup]="faqForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Question</label> <br> 
+                                    <input style="width: inherit;" type="text" class="input-clare" formControlName="question"/>   
+                                    <div class="stats text-danger" [hidden]="!questionRequired">
+                                        <small>The field above is required</small>
+                                    </div>                             
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Answer</label> <br> 
+                                    <input style="width: inherit;" type="text" class="input-clare" formControlName="answer"/>
+                                    <div class="stats text-danger" [hidden]="!answerRequired">
+                                        <small>The field above is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" *ngIf="isAdd" class="btn btn-success pull-right" (click)="addFAQ()">Add</button>
+                             <button type="submit" *ngIf="!isAdd" class="btn btn-success pull-right" (click)="updateFAQ()">Update</button>
+                        </form>
+                        </div>
+                        <h5 style="margin-bottom: 15px; margin-top: 20px;">FAQs</h5>
+                        <div *ngFor="let faq of FAQs | async; let i = index">
+                         <div class="alert alert-info alert-with-icon" data-notify="container">
+                            <button type="button" aria-hidden="true" (click)="deleteFAQ(faq)" class="close"><i class="material-icons">delete</i></button>
+                            <button type="button" aria-hidden="true" (click)="editFAQ(faq)" class="close"><i class="material-icons">edit</i></button>
+                            <span data-notify="message"><strong>Question:</strong> {{faq.question}}</span>
+                            <span data-notify="message"><strong>Answer:</strong> {{faq.answer}}</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

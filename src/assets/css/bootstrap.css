@@ -1239,7 +1239,7 @@ h3,
 .input-clare{
   background-color: white; 
   border-top-width: inherit; 
-  border-left-width: inherit;
+  border-left-width: inherit !important;
    border-right-width: inherit; 
    color: lightgray;
 }

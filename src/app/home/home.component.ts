@@ -36,11 +36,7 @@ export class HomeComponent {
     signInAttempt: boolean = false;
     signUpAttempt: boolean = false;
     changePasswordAttempt: boolean = false;
-    public message: {
-      personName :'',
-      emailAddress:'',
-      subject:'',
-      message:''}
+    public message: {}
     contactUsMessage:String = '';
     messageSent:boolean = true;
 
@@ -76,11 +72,24 @@ export class HomeComponent {
     sendMessage(message){
       this.messageSent = false;
       if(this.contactUsForm.valid){
+        this.message = {
+          personName: this.contactUsForm.get('personName').value,
+          emailAddress: this.contactUsForm.get('emailAddress').value,
+          subject: this.contactUsForm.get('subject').value,
+          message: this.contactUsForm.get('message').value,
+          isFromWeb: true,
+        };
         this.db.list('/message').push(this.message);
         this.contactUsMessage = 'Your message is sent successfully.'
         this.messageSent = true;
+        this.contactUsForm.reset();
+       // this.contactUsForm.controls['personName'];   
+        //this.contactUsForm.controls['emailAddress'];
+       // this.contactUsForm.controls['subject'];
+       // this.contactUsForm.controls['message'];      
       }else{
-        this.contactUsMessage = 'Your message was not sent successfully.'
+        this.messageSent = true;
+        this.contactUsMessage = 'Please fill all required fields.'
       }      
     }
    

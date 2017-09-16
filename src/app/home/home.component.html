@@ -247,25 +247,26 @@
 				<div class="h-u1"></div><div class="h-u2"></div><div class="h-u3"></div><div class="clearfix"></div>
 			</div>
 			<div class="agileinfo_mail_grids">
-				<form [formGroup]="contactUsForm">
+				<form [formGroup]="contactUsForm" style=" text-align: center;">
 					<div class="row">   
 					 	<div class="col-md-6">
                       		<label class="control-label">Name</label><br> 
-							<input class="input-clare"  style="background-color: black !important; width: 100%;" (ngModel)="message.personName" formControlName="personName" name="personName" type="text" required="" />
+							<input class="input-clare"  style="background-color: black !important; width: 100%;text-align: center;" (ngModel)="message.personName" formControlName="personName" name="personName" type="text" required="" />
 						</div>
 						<div class="col-md-6">
                       		<label class="control-label">Email</label><br> 
-							<input class="input-clare" style="background-color: black !important; width: 100%;" (ngModel)="message.emailAddress" formControlName="emailAddress" name="emailAddress" type="email" required/>
+							<input class="input-clare" style="background-color: black !important; width: 100%;text-align: center;" (ngModel)="message.emailAddress" formControlName="emailAddress" name="emailAddress" type="email" required/>
 						</div>
 					</div>
 					<div class="row">   
 					 	<div class="col-md-6">
                       		<label class="control-label">Subject</label><br> 
-							<input class="input-clare" style="background-color: black !important; width: 100%;" (ngModel)="message.subject" formControlName="subject" name="subject" type="text" required/>
+							<input class="input-clare" style="background-color: black !important; width: 100%;text-align: center;" (ngModel)="message.subject" formControlName="subject" name="subject" type="text" required/>
 						</div>
 					</div>
-					<textarea  formControlName="message" name="message" (ngModel)="message.message" placeholder="Your comment here..." required></textarea>
+					<textarea style="color: lightgray;font-size: medium;"  formControlName="message" name="message" (ngModel)="message.message" placeholder="Your comment here..." required></textarea>
 					<input type="submit" value="Submit" (click)="sendMessage(message)" >
+					<p *ngIf="messageSent">{{this.contactUsMessage}}</p>
 				</form>
 			</div>
 			</div>
@@ -282,14 +283,13 @@
 					<div class="wthree_footer_grid_left">
 						<i class="fa fa-phone" aria-hidden="true"></i>
 					</div>
-					<p>+(000) 123 4565 32 <span>+(010) 123 4565 35</span></p>
+					<p>073 169 7774 <span>061 123 0358</span></p>
 				</div>
 				<div class="col-md-4 w3ls_footer_grid_left">
 					<div class="wthree_footer_grid_left">
 						<i class="fa fa-envelope-o" aria-hidden="true"></i>
 					</div>
-					<p><a href="mailto:info@example.com">info@example1.com</a>
-						<span><a href="mailto:info@example.com">info@example2.com</a></span></p>
+					<p><a href="mailto:dvert2530@gmail.com">dvert2530@gmail.com</a>
 				</div>
 				<div class="clearfix"> </div>
 			</div>

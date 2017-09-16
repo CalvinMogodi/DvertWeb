@@ -14,13 +14,17 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class DashboardComponent {
     awaitingApprovalAdverts: Array<any>;
     rejectedAdverts: Array<any>;
+    freeAdvertCount : number = 0;
     approvedAdverts: Array<any>;
 
     constructor(public db: AngularFireDatabase){
       this.awaitingApprovalAdverts = [];
       this.rejectedAdverts = [];
-      this.approvedAdverts = [];
-       this.db.list('/advert', {query: {orderByChild: 'isApproved', equalTo: false } }).subscribe(data =>{
+       this.db.object('/trialSetting/123456789').subscribe(data =>{
+        this.freeAdvertCount = data.totalCount;
+      });
+
+      this.db.list('/advert', {query: {orderByChild: 'isApproved', equalTo: false } }).subscribe(data =>{
         this.awaitingApprovalAdverts = data;
       });
      this.db.list('/advert', {query: {orderByChild: 'isRejected', equalTo: true } }).subscribe(data =>{

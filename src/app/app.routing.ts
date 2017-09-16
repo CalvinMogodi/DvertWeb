@@ -9,6 +9,7 @@ import { FAQsComponent } from './frequentlyAskedQuestion/faq.component';
 import { HomeComponent } from './home/home.component';
 import { AdvertComponent } from './advert/advert.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { PrivacyPoliciesAndTermsConditionsComponent } from './privacyPoliciesAndTermsConditions/privacyPoliciesAndTermsConditions.component';
 
 const routes: Routes =[
     { path: 'dashboard', component: DashboardComponent },
@@ -17,6 +18,7 @@ const routes: Routes =[
     { path: 'home', component: HomeComponent },
     { path: 'advert', component: AdvertComponent },
     { path: 'companies', component: CompaniesComponent },
+    { path: 'privacyPoliciesAndTermsConditions', component: PrivacyPoliciesAndTermsConditionsComponent },
        
     /*  { path: '',          redirectTo: 'dashboard', pathMatch: 'full' }*/
 ];

@@ -15,10 +15,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './message/message.component';
 import { FAQsComponent } from './frequentlyAskedQuestion/faq.component';
 import { HomeComponent } from './home/home.component';
+import { PrivacyPoliciesAndTermsConditionsComponent } from './privacyPoliciesAndTermsConditions/privacyPoliciesAndTermsConditions.component';
 import { AdvertComponent } from './advert/advert.component';
 import { CompaniesComponent } from './companies/companies.component';
-import { ApproveRejectComponent } from './advert/approveReject/approveReject.component';
 import { MdDialogModule } from '@angular/material';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 export const firebaseConfig = {
    apiKey: "AIzaSyBHQX44svGWHFMdmLa2kmD_lhVAm6YC-4I",
@@ -37,10 +38,8 @@ export const firebaseConfig = {
     HomeComponent,
     CompaniesComponent,
     AdvertComponent,
-    ApproveRejectComponent,
-   // MdDialog
+   PrivacyPoliciesAndTermsConditionsComponent
   ],
-  entryComponents: [ ApproveRejectComponent ],
    exports: [RouterModule],
   imports: [
     BrowserModule,
@@ -54,6 +53,7 @@ export const firebaseConfig = {
     RouterModule,
     MdDialogModule,
    BrowserAnimationsModule,
+   ToastModule.forRoot()
    // MdDialog
   ],
   providers: [],

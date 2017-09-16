@@ -13,8 +13,23 @@
                             <button type="button" aria-hidden="true" (click)="deleteMessage(message)" class="close"><i class="material-icons">delete</i></button>
                             <button *ngIf="message.unread == null" type="button" (click)="messageRead(message)" aria-hidden="true" class="close"><i data-notify="icon" class="material-icons">markunread</i></button>
                             <i *ngIf="message.unread" data-notify="icon" class="material-icons">drafts</i>
-                            <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+                                 <div class="card-content">
+                            <div class="row"> 
+                                <div class="col-md-4">  
+					 	            <p><strong>From:</strong> {{message.personName}}</p>
+                                 </div>
+                                 <div class="col-md-4">
+						            <p><strong>E-mail:</strong> {{message.emailAddress}}</p>
+                                </div>
+                                <div class="col-md-4" style="margin-right: inherit">
+						            <p><strong>Subject:</strong> {{message.subject}}</p>
+                                </div>
+					        </div>
+                            <div class="row">   
+					 	        <span data-notify="message"><strong>Messages:</strong> {{message.message}}</span>
+					        </div>
                         </div>
+                         </div>
                         </div>
                     </div>
                     <div class="col-md-6">
