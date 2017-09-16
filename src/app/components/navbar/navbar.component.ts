@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
     awaitingApprovalAdverts: Array<any>;
     unReadMessage: Array<any>;
 
-    constructor(location: Location,  private element: ElementRef,public db: AngularFireDatabase) {
+    constructor(location: Location,  private element: ElementRef,public db: AngularFireDatabase,public router: Router) {
         this.awaitingApprovalAdverts = [];
           this.unReadMessage = [];
        this.db.list('/advert', {query: {orderByChild: 'isApproved', equalTo: false } }).subscribe(data =>{
@@ -33,6 +34,12 @@ export class NavbarComponent implements OnInit {
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+    }
+
+    signOut(){
+        sessionStorage.removeItem('currentUser')
+        this.router.navigate(['home']);  
+
     }
 
     sidebarOpen() {

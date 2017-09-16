@@ -15,8 +15,10 @@ export class AppComponent implements OnInit {
   goToPrivacyPoliciesAndTermsConditions: boolean = false ; 
    users: FirebaseListObservable<any[]>;
     signInAttempt: boolean = false;
-  constructor(public location: Location, public db: AngularFireDatabase, router : Router) {
-    router.events.subscribe((url:any) => {     
+  constructor(public location: Location, public db: AngularFireDatabase,public router : Router) {
+    router.events.subscribe((url:any) => { 
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
         if(url.url == '/home' || url.url == '/' ){
           this.isAuthenticated = false ;
           this.goToPrivacyPoliciesAndTermsConditions = false ;
@@ -24,8 +26,19 @@ export class AppComponent implements OnInit {
           this.goToPrivacyPoliciesAndTermsConditions = true;
         }
         else{
-           this.isAuthenticated = true ;
-           this.goToPrivacyPoliciesAndTermsConditions = false ;
+          if(currentUser != null){
+            if(currentUser.isAuthenticated){
+              this.isAuthenticated = true ;
+              this.goToPrivacyPoliciesAndTermsConditions = false ;
+            }else{
+               this.isAuthenticated = false ;
+            this.router.navigate(['home']); 
+            }            
+          }  else{
+            this.isAuthenticated = false ;
+            this.router.navigate(['home']);            
+          }
+          
         }
     });
   }

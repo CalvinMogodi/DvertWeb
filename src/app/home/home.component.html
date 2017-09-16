@@ -42,42 +42,33 @@
 					<div class="signin-form profile">
 						<h3 class="agileinfo_sign">Sign In</h3>
 						<div class="login-form">
-							<form #loginForm="ngForm">
-                <div class="form-group">
-								  <input class="form-control" type="text" id="loginEmailAddress" name="loginEmailAddress" [(ngModel)]="login.emailAddress" #loginEmailAddress="ngModel" class="form-control" placeholder="E-mail" required >
-                  <div *ngIf="loginEmailAddress.errors && (loginEmailAddress.dirty || loginEmailAddress.touched)" class="alert alert-danger">
-                    <div [hidden]="!emailAddress.errors.required">
-                      The field above is required.
-                    </div>
-                     <div [hidden]="!loginEmailAddress.errors.pattern">
-                        Please enter a valid email!
-                      </div>
-                  </div>
-                </div>   
-                 <div class="form-group">             
-								<input class="form-control" type="password" name="loginPassword" [(ngModel)]="login.username" placeholder="Password" required id="loginPassword" #loginPassword="ngModel">
-                <div *ngIf="loginPassword.errors && (loginPassword.dirty || loginPassword.touched)" class="alert alert-danger">
-                    <div [hidden]="!loginPassword.errors.required">
-                      The field above is required
-                    </div>
-                  </div>
-                </div>  
-                <div class="error-messgae">
-                  <small><b>joe@abc.com</b></small>
-                </div> 
-								<div class="tp">
-									<input type="submit" value="Sign In" (click)="signInClick(login)">
-								</div>
+							<form [formGroup]="loginForm">
+                				<div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">E-mail Address</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="text" class="input-clare" formControlName="loginEmail"/>   
+                                        <div class="stats text-danger" [hidden]="!loginEmailRequired">
+                                            <small>The field above is required</small>
+                                        </div>                      
+                                    </div>
+                                </div>
+								<div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Password</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="password" class="input-clare" formControlName="loginPassword"/>   
+                                        <div class="stats text-danger" [hidden]="!loginPasswordRequired">
+                                            <small>The field above is required</small>
+                                        </div> 										                         
+                                    </div>
+                                </div>
+								<button type="submit" style="width: 100%" class="btn btn-success pull-center" (click)="signInClick()">Sign In</button>
+								 <div class="stats text-danger" [hidden]="!invaildLogin">
+                                            <small>Invaild email address or password</small>
+                                 </div>  
 							</form>
 						</div>
-						<div class="login-social-grids">
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-rss"></i></a></li>
-							</ul>
-						</div>
-						<p><a href="#" data-toggle="modal" data-target="#myModal3"> Don't have an account?</a></p>
+						
+						<p><a href="#" data-toggle="modal" data-target="#myModal3"> Don't have an account?</a> | <a href="#" data-toggle="modal" data-target="#fotgotPasswordModal"> Forgot Password?</a></p>
 					</div>
 				</div>
 			</div>
@@ -95,7 +86,7 @@
 					<div class="signin-form profile">
 						<h3 class="agileinfo_sign">Sign Up</h3>
 						<div class="login-form">
-							<form action="#" method="post">
+							<form [formGroup]="signUpForm">
 								  <div class="row">
                                     <div class="col-md-12">
                                         <label class="control-label">E-mail Address</label> <br> 
@@ -130,14 +121,14 @@
                                     <div class="col-md-12">
                                         <label class="control-label">Password</label> <br> 
                                         <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="password" class="input-clare" formControlName="businessPassword"/>   
-                                        <div class="stats text-danger" [hidden]="!businessWebsiteRequired">
+                                        <div class="stats text-danger" [hidden]="!businessPasswordRequired">
                                             <small>The field above is required</small>
                                         </div>       
 										<div class="stats text-danger" [hidden]="!passwordRequirements">
                                             <small>password does not meet minimum requirements <li style="list-style-type: none;" class="dropdown">
 												<a class="dropdown-toggle" style="float: right; margin-top: -20px" data-toggle="dropdown">view</a>
 												 <ul class="dropdown-menu">
-													<li>Be at least 8 characters in length.</li>
+													<li>Be at least 6 characters in length.</li>
 													<li>Contain at least 1 lowercase and 1 uppercase letter.</li>
 													<li>Contain at least 1 special character (!@#$%^&*).</li>
 													<li>Contain at least 1 number (0–9).</li>
@@ -159,7 +150,7 @@
                                         </div>                             
                                     </div>
                                 </div>
-								<button type="submit" style="width: 100%" class="btn btn-success pull-center" (click)="ignUp()">Sign Up</button>
+								<button type="submit" style="width: 100%" class="btn btn-success pull-center" (click)="signUpClick()">Sign Up</button>
 							</form>
 						</div>
 						<p><a href="privacyPoliciesAndTermsConditions"> By clicking register, I agree to your terms</a></p>
@@ -310,21 +301,36 @@
 					 	<div class="col-md-6">
                       		<label class="control-label">Name</label><br> 
 							<input class="input-clare"  style="background-color: black !important; width: 100%;text-align: center;" (ngModel)="message.personName" formControlName="personName" name="personName" type="text" required="" />
+							<div class="stats text-danger" [hidden]="!personNameRequired">
+                            	<small>The field above is required</small>
+                            </div> 
 						</div>
 						<div class="col-md-6">
                       		<label class="control-label">Email</label><br> 
 							<input class="input-clare" style="background-color: black !important; width: 100%;text-align: center;" (ngModel)="message.emailAddress" formControlName="emailAddress" name="emailAddress" type="email" required/>
+							<div class="stats text-danger" [hidden]="!cuemailAddressRequired">
+                            	<small>The field above is required</small>
+                            </div>     
+							<div class="stats text-danger" [hidden]="!cuemailAddressInvaild">
+                            	<small>invalid email address format</small>											
+                            </div>  
 						</div>
 					</div>
 					<div class="row">   
 					 	<div class="col-md-6">
                       		<label class="control-label">Subject</label><br> 
 							<input class="input-clare" style="background-color: black !important; width: 100%;text-align: center;" (ngModel)="message.subject" formControlName="subject" name="subject" type="text" required/>
+							<div class="stats text-danger" [hidden]="!subjectRequired">
+                            	<small>The field above is required</small>
+                            </div> 
 						</div>
 					</div>
 					<textarea style="color: lightgray;font-size: medium;"  formControlName="message" name="message" (ngModel)="message.message" placeholder="Your comment here..." required></textarea>
+					<div class="stats text-danger" [hidden]="!messageRequired">
+                            	<small>The field above is required</small>
+                            </div> 
 					<input type="submit" value="Submit" (click)="sendMessage(message)" >
-					<p *ngIf="messageSent">{{this.contactUsMessage}}</p>
+			
 				</form>
 			</div>
 			</div>

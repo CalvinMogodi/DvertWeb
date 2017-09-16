@@ -20,6 +20,7 @@ export class DashboardComponent {
     constructor(public db: AngularFireDatabase){
       this.awaitingApprovalAdverts = [];
       this.rejectedAdverts = [];
+      this.approvedAdverts = [];
        this.db.object('/trialSetting/123456789').subscribe(data =>{
         this.freeAdvertCount = data.totalCount;
       });
