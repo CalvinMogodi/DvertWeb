@@ -96,15 +96,73 @@
 						<h3 class="agileinfo_sign">Sign Up</h3>
 						<div class="login-form">
 							<form action="#" method="post">
-								<input type="text" name="name" placeholder="Username" required="">
-								<input type="email" name="email" placeholder="Email" required="">
-								<input type="password" name="password" id="password1" placeholder="Password" required="">
-								<input type="password" name="password" id="password2" placeholder="Confirm Password" required="">
-
-								<input type="submit" value="Sign Up">
+								  <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">E-mail Address</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="text" class="input-clare" formControlName="businessEmail"/>   
+                                        <div class="stats text-danger" [hidden]="!businessEmailRequired">
+                                            <small>The field above is required</small>
+                                        </div>     
+										<div class="stats text-danger" [hidden]="!businessEmailInvaild">
+                                            <small>invalid email address format</small>											
+                                        </div>                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Business Name</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="text" class="input-clare" formControlName="businessName"/>   
+                                        <div class="stats text-danger" [hidden]="!businessNameRequired">
+                                            <small>The field above is required</small>
+                                        </div>                             
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Business Website</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="text" class="input-clare" formControlName="businessWebsite"/>   
+                                        <div class="stats text-danger" [hidden]="!businessWebsiteRequired">
+                                            <small>The field above is required</small>
+                                        </div>                             
+                                    </div>
+                                </div>
+								 <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Password</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="password" class="input-clare" formControlName="businessPassword"/>   
+                                        <div class="stats text-danger" [hidden]="!businessWebsiteRequired">
+                                            <small>The field above is required</small>
+                                        </div>       
+										<div class="stats text-danger" [hidden]="!passwordRequirements">
+                                            <small>password does not meet minimum requirements <li style="list-style-type: none;" class="dropdown">
+												<a class="dropdown-toggle" style="float: right; margin-top: -20px" data-toggle="dropdown">view</a>
+												 <ul class="dropdown-menu">
+													<li>Be at least 8 characters in length.</li>
+													<li>Contain at least 1 lowercase and 1 uppercase letter.</li>
+													<li>Contain at least 1 special character (!@#$%^&*).</li>
+													<li>Contain at least 1 number (0–9).</li>
+												 </ul>
+											</li></small>
+											
+                                        </div>                      
+                                    </div>
+                                </div>
+								 <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Confirm Password</label> <br> 
+                                        <input style="width: inherit; background-color: white; border-top-width: inherit; border-left-width: inherit; border-right-width: inherit;" type="password" class="input-clare" formControlName="confirmPassword"/>   
+                                        <div class="stats text-danger" [hidden]="!confirmPasswordRequired">
+                                            <small>The field above is required</small>
+                                        </div> 
+										<div class="stats text-danger" [hidden]="!passwordsDoNotMatch">
+                                            <small>passwords supplied do not match</small>											
+                                        </div>                             
+                                    </div>
+                                </div>
+								<button type="submit" style="width: 100%" class="btn btn-success pull-center" (click)="ignUp()">Sign Up</button>
 							</form>
 						</div>
-						<p><a href="#"> By clicking register, I agree to your terms</a></p>
+						<p><a href="privacyPoliciesAndTermsConditions"> By clicking register, I agree to your terms</a></p>
 					</div>
 				</div>
 			</div>
