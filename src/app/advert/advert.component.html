@@ -1,0 +1,178 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Awaiting Approvel</h4>
+                        <p class="category">Advert that are waiting for approval</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-danger">
+                                <tr>
+                                    <th>Advert Name</th>
+                                    <th>Customer Display Name</th>
+                                    <th>Added As Business</th>
+                                    <th>category</th>
+                                    <th>Date Start</th>                                   
+                                    <th>Date End</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let advert of awaitApprovelADs; let i = index">
+                                <tr>
+                                    <td>{{advert.advertName}}</td>
+                                    <td>{{advert.userDisplayName}}</td>
+                                    <td *ngIf="advert.postAsaBusiness == true">Yes</td>
+                                    <td *ngIf="advert.postAsaBusiness == false">No</td>
+                                    <td>{{advert.category}}</td>
+                                    <td>{{advert.dateStart | date}}</td>
+                                    <td>{{advert.dateEnd | date}}</td>
+                                     <td class="td-actions text-right">
+                                        <button type="button" (click)="approveRejectAdvert(advert, i)"  rel="tooltip" title="View Details" class="btn btn-primary btn-simple btn-xs">
+                                            <i class="material-icons">visibility</i>
+                                        </button>                                                  
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">All Advert</h4>
+                        <p class="category">All advert that captured</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover iframe-container hidden-sm hidden-xs">
+                            <thead class="text-danger">
+                                <tr>
+                                    <th>Advert Name</th>
+                                    <th>Customer Display Name</th>
+                                    <th>category</th>
+                                    <th>Date Start</th>                                   
+                                    <th>Date End</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let advert of adverts; let i = index">
+                                <tr>
+                                    <td>{{advert.advertName}}</td>
+                                    <td>{{advert.userDisplayName}}</td>
+                                    <td>{{advert.category}}</td>
+                                    <td>{{advert.dateStart | date}}</td>
+                                    <td>{{advert.dateEnd | date}}</td>
+                                    <td>{{advert.status}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="approveRejectAdModal" style="z-index: 1!important;" tabindex="1">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="card" id="imageModel" style="display: none">
+             <button type="button" (click)="toggleAdvertModel1()"  rel="tooltip" title="View Details" class="btn btn-primary btn-simple btn-xs">
+                <i class="material-icons">arrow_back</i>Back
+                </button><br><br>
+            <img (click)="toggleAdvertModel()" src="" id="selectAdvertimageFull"/>
+        </div>
+               
+                <div class="card" id="mainModel">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                <div class="card-header" data-background-color="red">
+                    <h4><img (click)="toggleAdvertModel()" class="fa fa-crosshairs" style="margin-top: -13px; margin-left: -13px; height: 95px; width: 95px; margin-right: 100px;" src="" id="selectAdvertimage"/>Approve Reject Advert</h4>
+                </div>  
+                           
+                <div class="card-content" >
+                    <form #form="ngForm">
+                        <div class="row">
+                           <div class="col-md-6">
+                               <label class="control-label">Advert Name</label> <br>  
+                                <input type="text" class="input-clare" disabled id='selectAdvertDdvertName'>                               
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Customer Display Name</label> <br>  
+                                <input type="text" class="input-clare" disabled id='selectAdvertCustomerDisplayName'>
+                            </div>
+                        </div>
+
+                        <div class="row" id="businessNameDiv">
+                            <div class="col-md-6">
+                                <label class="control-label">Business Name</label> <br>                                     
+                                <input type="text" class="input-clare" id="selectAdvertBusinessName" >
+                            </div>
+                            <div class="col-md-6" id="businessWebsiteDiv">
+                                <label class="control-label">Business Website</label> <br>                                    
+                                    <input type="text" class="input-clare" id="selectAdvertBusinessWebsite">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                             <div class="col-md-6">
+                                 <label class="control-label">Category</label> <br>                                
+                                    <input type="text" class="input-clare"id="selectAdvertCategory">
+                            </div>
+                           <div class="col-md-6">
+                                <label class="control-label">Location</label>   <br>                               
+                                    <input type="text" class="input-clare" id="selectAdvertLocation">
+                            </div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-md-6">
+                                  <label class="control-label">Data Start</label>  <br>                                
+                                    <input type="text" class="input-clare" id="selectAdvertDataStart">
+                            </div>
+                           <div class="col-md-6">
+                               <label class="control-label">Date End</label>    <br>                            
+                                    <input type="text" class="input-clare" id="selectAdvertDateEnd">
+                            </div>
+                        </div>
+                         <div class="row">                            
+                            <div class="col-md-6">
+                                 <label class="control-label">Time Start</label> <br>  
+                                    <input type="text" class="input-clare" id="selectAdvertTimeStart">
+                            </div>
+                           <div class="col-md-6">
+                                <label class="control-label">Time End</label><br>  
+                                    <input type="text" class="input-clare" id="selectAdvertTimeEnd">
+                            </div>
+                        </div>
+                         <div class="row">                            
+                            <div class="col-md-6">
+                                 <label class="control-label">Mobile Number</label> <br>  
+                                    <input type="text" class="input-clare" id="selectAdvertMobileNumber">
+                            </div>
+                           <div class="col-md-6">
+                                <label class="control-label">Email Address</label><br>  
+                                    <input type="text" class="input-clare" id="selectAdvertEmailAddress">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                 <label>Description</label><br>  
+                                 <textarea class="input-clare" style="width: 100%;" id="selectAdvertDiscription"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger pull-left" (click)="rejectAdvert()">Reject</button>
+                        <button type="submit" class="btn btn-success pull-right" (click)="approveAdvert()">Approve</button>
+                        <div class="clearfix"></div>
+                    </form>
+              
+            </div>
+        </div>
+     
+</div>
+</div>  

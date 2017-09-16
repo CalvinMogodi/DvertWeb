@@ -1,0 +1,128 @@
+<div class="main-content">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="orange">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Awaiting Approval</p>
+                            <h3 class="title">{{awaitingApprovalAdverts.length}}<small> ADs</small></h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">remove_red_eye</i> <a href="advert">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="green">
+                            <i class="material-icons">done_all</i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Approved Adverts</p>
+                            <h3 class="title">{{approvedAdverts.length}}<small> ADs</small></h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">remove_red_eye</i> <a href="advert">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="red">
+                            <i class="material-icons">block</i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Rejected Adverts</p>
+                            <h3 class="title">{{rejectedAdverts.length}}<small> ADs</small></h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">remove_red_eye</i> <a href="advert">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="blue">
+                            <i class="fa fa-twitter"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Followers</p>
+                            <h3 class="title">+245</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card" >
+                        <div class="card-header card-chart" data-background-color="green">
+                            <div class="ct-chart" id="dailySalesChart"></div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="title">Messages</h4>
+                            <p class="category">sent by users from mobile app and website.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">remove_red_eye</i> <a href="message">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" >
+                        <div class="card-header card-chart" data-background-color="orange">
+                            <div class="ct-chart" id="emailsSubscriptionChart">
+                                <i class="material-icons">remove_red_eye</i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="title">Companies</h4>
+                            <p class="category">That are registered.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">remove_red_eye</i> <a href="advert">View Details</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" >
+                        <div class="card-header card-chart" data-background-color="red">
+                            <div class="ct-chart" id="completedTasksChart"></div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="title">Frequently Asked Questions (FAQ)</h4>
+                            <p class="category">FAQ for mobile app</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">remove_red_eye</i> <a href="faq">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
